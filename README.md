@@ -73,7 +73,7 @@ plt.figure(figsize=(12, 8))
 plot_tree(modelo_arbol, feature_names=iris.feature_names, class_names=iris.target_names, filled=True)
 plt.title("Árbol de Decisión - Dataset Iris")
 plt.show()
-
+```
 ---
 
 ```R
