@@ -75,8 +75,9 @@ plt.title("Árbol de Decisión - Dataset Iris")
 plt.show()
 ```
 ---
-# Implementación en Python
-El siguiente código implementa y visualiza un árbol de decisión en Python utilizando 'rpart' y 'rpart.plot' para la visualizacion.
+## Implementación en R
+El siguiente código implementa y visualiza un árbol de decisión en Python utilizando `rpart` y `rpart.plot` para la visualizacion.
+
 ```R
 # Instalamos los paquetes para arboles de regresion y su visualizacion
 install.packages("rpart")
