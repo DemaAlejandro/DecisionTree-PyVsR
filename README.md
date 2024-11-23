@@ -74,7 +74,9 @@ plot_tree(modelo_arbol, feature_names=iris.feature_names, class_names=iris.targe
 plt.title("Árbol de Decisión - Dataset Iris")
 plt.show()
 
+---
 
+```R
 # Instalamos los paquetes para arboles de regresion y su visualizacion
 install.packages("rpart")
 install.packages("rpart.plot")
@@ -108,3 +110,16 @@ cat("Precisión del modelo:", round(precision * 100,2), "%\n")
 
 # Visualizamos el árbol de decisión para el entrenamiento
 rpart.plot(modelo_arbol)
+
+---
+Comparación: Diferencias y Similitudes
+Aspecto	Python	R
+Simplicidad	Requiere configuraciones adicionales para visualización.	La función rpart.plot permite una visualización rápida y sencilla.
+Velocidad	Excelente para datasets grandes gracias a scikit-learn.	Ideal para análisis estadísticos en profundidad.
+Comunidad	Comunidad amplia con recursos extensivos.	Orientado a investigación académica y estadística.
+
+--- 
+Conclusiones
+Ambos lenguajes son herramientas poderosas para trabajar con árboles de decisión.
+Python es más versátil para proyectos en producción y manejo de grandes datasets.
+R sobresale en análisis exploratorios y visualización intuitiva.
