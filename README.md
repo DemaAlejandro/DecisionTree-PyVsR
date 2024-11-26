@@ -75,9 +75,7 @@ plt.title("Decision Tree - Iris Dataset")
 plt.show()
 ```
 ---
- ```markdown
-     ![Decision Tree Visualization](DecisionTreePython.png)
-     ```
+![Decision Tree Visualization](DecisionTreePython.png)
 
 ## Implementation in R
 The following code implements and visualizes a decision tree in R using rpart and rpart.plot for visualization.
