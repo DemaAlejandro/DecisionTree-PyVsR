@@ -75,7 +75,6 @@ plt.title("Decision Tree - Iris Dataset")
 plt.show()
 ```
 ![Decision Tree Visualization](DecisionTreePython.png)
----
 
 ## Implementation in R
 The following code implements and visualizes a decision tree in R using rpart and rpart.plot for visualization.
@@ -116,8 +115,8 @@ cat("Model Accuracy:", round(accuracy * 100, 2), "%\n")
 # Visualize the decision tree
 rpart.plot(decision_tree)
 ```
+![Decision Tree Visualization](DecisionTreeR.png)
 
----
 ## Comparison: Differences and Similarities
 
 | Aspect         | Python                                                              | R                                                              |
