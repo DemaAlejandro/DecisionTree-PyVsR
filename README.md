@@ -74,8 +74,8 @@ plot_tree(decision_tree, feature_names=iris.feature_names, class_names=iris.targ
 plt.title("Decision Tree - Iris Dataset")
 plt.show()
 ```
----
 ![Decision Tree Visualization](DecisionTreePython.png)
+---
 
 ## Implementation in R
 The following code implements and visualizes a decision tree in R using rpart and rpart.plot for visualization.
