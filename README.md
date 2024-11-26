@@ -2,7 +2,7 @@
 
 A quick and practical guide to decision trees, their fundamentals, and how to implement them in Python and R.
 
----
+![Decision Tree Example](ExampleDT.png)
 
 ## Table of Contents
 
