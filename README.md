@@ -1,43 +1,43 @@
 # Decision Trees: Python vs R
 
-Una guía rápida y práctica sobre los árboles de decisión, sus fundamentos, y cómo implementarlos en Python y R.
+A quick and practical guide to decision trees, their fundamentals, and how to implement them in Python and R.
 
 ---
 
-## Tabla de Contenidos
+## Table of Contents
 
-1. [Explicación Teórica Básica](#explicación-teórica-básica)
-2. [Implementación en Python](#implementación-en-python)
-3. [Implementación en R](#implementación-en-r)
-4. [Comparación: Diferencias y Similitudes](#comparación-diferencias-y-similitudes)
-5. [Conclusiones](#conclusiones)
+1. [Basic Theoretical Explanation](#basic-theoretical-explanation)
+2. [Implementation in Python](#implementation-in-python)
+3. [Implementation in R](#implementation-in-r)
+4. [Comparison: Differences and Similarities](#comparison-differences-and-similarities)
+5. [Conclusions](#conclusions)
 
 ---
 
-## Explicación Teórica Básica
+## Basic Theoretical Explanation
 
-Los árboles de decisión son algoritmos supervisados usados tanto para problemas de clasificación como de regresión. Su estructura está compuesta por:
+Decision trees are supervised algorithms used for both classification and regression problems. Their structure consists of:
 
-- **Nodo raíz:** Punto inicial que contiene todo el dataset.
-- **Nodos internos:** Decisiones basadas en una característica del dataset.
-- **Hojas:** Resultado o categoría final.
+- **Root Node:** The starting point containing the entire dataset.
+- **Internal Nodes:** Decisions based on a feature of the dataset.
+- **Leaves:** Final outcomes or categories.
 
-El objetivo principal es dividir el dataset en subconjuntos más homogéneos mediante decisiones basadas en métricas como:
+The main objective is to split the dataset into more homogeneous subsets using decisions based on metrics such as:
 
 - **Gini Impurity**
 - **Entropy (ID3, C4.5)**
-- **Error de Clasificación**
+- **Classification Error**
 
-La visualización de un árbol permite una interpretación clara y directa de las decisiones tomadas en cada nodo.
+Visualizing a tree allows for a clear and direct interpretation of the decisions made at each node.
 
 ---
 
-## Implementación en Python
+## Implementation in Python
 
-El siguiente código implementa y visualiza un árbol de decisión en Python utilizando `scikit-learn` y `matplotlib`.
+The following code implements and visualizes a decision tree in Python using `scikit-learn` and `matplotlib`.
 
 ```python
-# Importar las bibliotecas necesarias
+# Import the necessary libraries
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier, plot_tree
@@ -45,84 +45,94 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# Cargar el conjunto de datos 'iris'
+# Load the 'iris' dataset
 iris = load_iris()
 
-# Dividir los datos en entrenamiento (70%) y prueba (30%)
+# Split the data into training (70%) and testing (30%)
 X_train, X_test, y_train, y_test = train_test_split(
     iris.data, iris.target, test_size=0.3, random_state=213
 )
 
-# Crear el modelo de árbol de decisión
-modelo_arbol = DecisionTreeClassifier(random_state=123)
-modelo_arbol.fit(X_train, y_train)
+# Create the decision tree model
+decision_tree = DecisionTreeClassifier(random_state=123)
+decision_tree.fit(X_train, y_train)
 
-# Predecir las clases para los datos de prueba
-predicciones = modelo_arbol.predict(X_test)
+# Predict the classes for the test data
+predictions = decision_tree.predict(X_test)
 
-# Crear una tabla de confusión
-tabla_confusion = confusion_matrix(y_test, predicciones)
-print("Tabla de Confusión:\n", tabla_confusion)
+# Create a confusion matrix
+conf_matrix = confusion_matrix(y_test, predictions)
+print("Confusion Matrix:\n", conf_matrix)
 
-# Calcular la precisión del modelo
-precision = accuracy_score(y_test, predicciones)
-print(f"Precisión del modelo: {precision * 100:.2f}%")
+# Calculate the model's accuracy
+accuracy = accuracy_score(y_test, predictions)
+print(f"Model Accuracy: {accuracy * 100:.2f}%")
 
-# Visualizar el árbol de decisión
+# Visualize the decision tree
 plt.figure(figsize=(12, 8))
-plot_tree(modelo_arbol, feature_names=iris.feature_names, class_names=iris.target_names, filled=True)
-plt.title("Árbol de Decisión - Dataset Iris")
+plot_tree(decision_tree, feature_names=iris.feature_names, class_names=iris.target_names, filled=True)
+plt.title("Decision Tree - Iris Dataset")
 plt.show()
-```
+
 ---
 ## Implementación en R
 El siguiente código implementa y visualiza un árbol de decisión en Python utilizando `rpart` y `rpart.plot` para la visualizacion.
-
+```
+---
+## Implementation in R
+The following code implements and visualizes a decision tree in R using rpart and rpart.plot for visualization.
 ```R
-# Instalamos los paquetes para arboles de regresion y su visualizacion
+# Install the required packages for decision trees and visualization
 install.packages("rpart")
 install.packages("rpart.plot")
 library(rpart)
 library(rpart.plot)
 
-# Cargamos el conjunto incorporado en R 'iris'. De no estar familiarizado podemos echar un vistazo previamente a la estructura y columnas.
+# Load the built-in 'iris' dataset. If unfamiliar, inspect its structure and columns first.
 data(iris)
 
-# Dividimos los datos en entrenamiento (70%) y prueba (30%). Estableceremos la semilla en 123 para la reproducibilidad.
+# Split the data into training (70%) and testing (30%) sets. Set the seed to 123 for reproducibility.
 set.seed(123)
 sample_indices <- sample(1:nrow(iris), 0.7 * nrow(iris))
-#Creamos el conjunto de datos de entrenamiento.
+
+# Create the training dataset
 train_data <- iris[sample_indices, ]
-#Creamos el conjunto de datos para test. Seran los restantes a los de entrenamiento.
+
+# Create the testing dataset with the remaining rows
 test_data <- iris[-sample_indices, ]
 
-# Creamos el modelo de árbol de decisión con rpart sobre la variable "Species" y prediciendo con todas las variables. Especificamos class porque es un problema de clasificacion de una variable categorica.
-modelo_arbol <- rpart(Species ~ ., data = train_data, method = "class")
+# Train the decision tree model using rpart, predicting 'Species' with all features
+decision_tree <- rpart(Species ~ ., data = train_data, method = "class")
 
-# Una vez entrenado el algoritmo con los datos de entrenamiento hacemos las predicciones con los datos de prueba
-predicciones <- predict(modelo_arbol, test_data, type = "class")
+# Make predictions on the test dataset
+predictions <- predict(decision_tree, test_data, type = "class")
 
-# Creamos una tabla de confusión para evaluar el rendimiento
-tabla_confusion <- table(Predicciones = predicciones, Actual = test_data$Species)
-print(tabla_confusion)
+# Create a confusion matrix to evaluate performance
+conf_matrix <- table(Predictions = predictions, Actual = test_data$Species)
+print(conf_matrix)
 
-# Calculamos la precisión del modelo
-precision <- sum(diag(tabla_confusion)) / sum(tabla_confusion)
-cat("Precisión del modelo:", round(precision * 100,2), "%\n")
+# Calculate the model's accuracy
+accuracy <- sum(diag(conf_matrix)) / sum(conf_matrix)
+cat("Model Accuracy:", round(accuracy * 100, 2), "%\n")
 
-# Visualizamos el árbol de decisión para el entrenamiento
-rpart.plot(modelo_arbol)
+# Visualize the decision tree
+rpart.plot(decision_tree)
 ```
 
 ---
-## Comparación: Diferencias y Similitudes
-Aspecto	Python	R
-Simplicidad	Requiere configuraciones adicionales para visualización.	La función rpart.plot permite una visualización rápida y sencilla.
-Velocidad	Excelente para datasets grandes gracias a scikit-learn.	Ideal para análisis estadísticos en profundidad.
-Comunidad	Comunidad amplia con recursos extensivos.	Orientado a investigación académica y estadística.
+## Comparison: Differences and Similarities
 
---- 
-## Conclusiones
-Ambos lenguajes son herramientas poderosas para trabajar con árboles de decisión.
-Python es más versátil para proyectos en producción y manejo de grandes datasets.
-R sobresale en análisis exploratorios y visualización intuitiva.
+| Aspect         | Python                                                              | R                                                              |
+|----------------|---------------------------------------------------------------------|----------------------------------------------------------------|
+| **Simplicity** | Requires additional configurations for visualization.              | The `rpart.plot` function allows quick and straightforward visualization. |
+| **Speed**      | Excellent for large datasets thanks to `scikit-learn`.             | Ideal for in-depth statistical analysis.                      |
+| **Community**  | Broad community with extensive resources.                          | Focused on academic and statistical research.                 |
+
+---
+
+## Conclusions
+
+- Both languages are powerful tools for working with decision trees.
+- **Python** is more versatile for production projects and handling large datasets.
+- **R** excels in exploratory analysis and intuitive visualization.
+
